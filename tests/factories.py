@@ -31,22 +31,22 @@ class ProductFactory(factory.Factory):
         model = Product
 
     id = factory.Sequence(lambda n: n)
-    name = factory.FuzzyChoice(choices=[
+    name = FuzzyChoice(choices=[
         "Hat",
-	    "Pants",
-	    "Shirt",
-	    "Apple",
-	    "Banana",
-	    "Pots",
-	    "Towels",
-	    "Ford",
-	    "Chevy",
-	    "Hammer",
-	    "Wrench"])
+        "Pants",
+        "Shirt",
+        "Apple",
+        "Banana",
+        "Pots",
+        "Towels",
+        "Ford",
+        "Chevy",
+        "Hammer",
+        "Wrench"])
     description = factory.Faker("text")
-    price = factory.FuzzyDecimal(.5, 2000.0, 2)
-    available = factory.FuzzyChoice(choices=[true, false])
-    category = factory.FuzzyChoice(choices=[
+    price = FuzzyDecimal(.5, 2000.0, 2)
+    available = FuzzyChoice(choices=[True, False])
+    category = FuzzyChoice(choices=[
         Category.UNKNOWN,
         Category.CLOTHS,
         Category.FOOD,
