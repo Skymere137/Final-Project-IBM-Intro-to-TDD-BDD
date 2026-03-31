@@ -32,6 +32,11 @@ from selenium.webdriver.support import expected_conditions
 
 ID_PREFIX = 'product_'
 
+@when('I press the "{button}" button')
+def step_impl(context, button):
+    button_id = button.lower() + '-btn'
+    context.driver.find_element(By.ID, button_id).click()
+
 
 @when('I visit the "Home Page"')
 def step_impl(context):
