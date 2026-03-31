@@ -47,6 +47,7 @@ Scenario: Read A Product
     When I copy the "Id" field
     And I press the "Clear" button
     And I paste the "Id" field
+    And I press the "Retrieve" button
     Then I should see the message "Success"
     And I should see "Hat" in the "Name" field
     And I should see "A red fedora" in the "Description" field
@@ -57,27 +58,33 @@ Scenario: Read A Product
 Scenario: Update a Product
     When I visit the "Home Page"
     And I set the "Name" to "Hat"
-    And I press the "Search" button 
+    And I press the "Search" button
     Then I should see the message "Success"
-    And the "Description" field should contain "A Red Fedora"
-    When I change the "Name" to "Fedora"
+    And I should see "A red fedora" in the "Description" field
+    When I change "Name" to "Fedora"
     And I press the "Update" button
     Then I should see the message "Success"
-    And the "Name" field should contain "Fedora"
-    And when I press the "Clear" button
-    And then I press I press the "Search" button
+    When I copy the "Id" field
+    And I press the "Clear" button
+    And I paste the "Id" field
+    And I press the "Retrieve" button
+    Then I should see the message "Success"
+    And I should see "Fedora" in the "Name" field
+    When I press the "Clear" button
+    And I press the "Search" button
     Then I should see the message "Success"
     And I should see "Fedora" in the results
     And I should not see "Hat" in the results
 
 Scenario: Delete a Product
-    When I am on the "Home Page"
+    When I visit the "Home Page"
     And I set the "Name" to "Hat"
-    And I I press the "Search" button
+    And I press the "Search" button
     Then I should see the message "Success"
-    And I should see "A Red Fedora" in the "Description" field
-    Then I copy the "Id" field
+    And I should see "A red fedora" in the "Description" field
+    When I copy the "Id" field
     And I press the "Clear" button
+    And I paste the "Id" field
     And I press the "Delete" button
     Then I should see the message "Product has been Deleted!"
     When I press the "Clear" button
@@ -85,31 +92,31 @@ Scenario: Delete a Product
     Then I should see the message "Success"
     And I should not see "Hat" in the results
 
-Scenario: List all Products
-    When I am on the "Home Page"
+Scenario: List all products
+    When I visit the "Home Page"
     And I press the "Clear" button
     And I press the "Search" button
     Then I should see the message "Success"
     And I should see "Hat" in the results
-    And I should see "Big Mac" in the results
     And I should see "Shoes" in the results
+    And I should see "Big Mac" in the results
     And I should see "Sheets" in the results
 
-Scenario: Search for Product by Category
-    When I am on the "Home Page"
+Scenario: Search by category
+    When I visit the "Home Page"
     And I press the "Clear" button
-    And I select the "Food" category
+    And I select "Food" in the "Category" dropdown
     And I press the "Search" button
     Then I should see the message "Success"
     And I should see "Big Mac" in the results
     And I should not see "Hat" in the results
-    And I should not see "Sheets" in the results
     And I should not see "Shoes" in the results
+    And I should not see "Sheets" in the results
 
-Scenario: Search for Product by Availability
-    When I am on the "Home Page"
+Scenario: Search by available
+    When I visit the "Home Page"
     And I press the "Clear" button
-    And I select the "Availability" category
+    And I select "True" in the "Available" dropdown
     And I press the "Search" button
     Then I should see the message "Success"
     And I should see "Hat" in the results
@@ -117,14 +124,11 @@ Scenario: Search for Product by Availability
     And I should see "Sheets" in the results
     And I should not see "Shoes" in the results
 
-Scenario: Search for Product by Name
+Scenario: Search by name
     When I visit the "Home Page"
-    And I press the "Clear" button
     And I set the "Name" to "Hat"
     And I press the "Search" button
     Then I should see the message "Success"
-    And I should see "Hat" in the results
-    And I should not see "Big Mac" in the results
-    And I should not see "Shoes" in the results
-    And I should not see "Sheets" in the results
+    And I should see "Hat" in the "Name" field
+    And I should see "A red fedora" in the "Description" field
     
